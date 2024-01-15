@@ -6,5 +6,6 @@ public class ScannerDemo {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         int n = sc.nextInt();
+        System.out.println(str+" "+n);
     }
 }
