@@ -20,8 +20,8 @@ public class Leetcode_1582_SpecialPositionsInABinaryMatrix {
 
     private static int numSpecialAnotherApproach(int[][] mat){
         /*
-        TC => O(n^2)
-        SC => O(n)
+        TC => O(nm)
+        SC => n+m
          */
         int row = mat.length, col = mat[0].length, specialOne = 0;
         int[] rowOneCount = new int [row], columnOneCount = new int [col]; //initialized with default zero
@@ -44,7 +44,7 @@ public class Leetcode_1582_SpecialPositionsInABinaryMatrix {
 
     private static int numSpecial(int[][] mat) {
         /*
-        TC => O(n^3)
+        TC => O(nm(n+m))
         SC => O(1)
          */
         int count = 0;
