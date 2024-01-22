@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 public class GFG_PrintMatrixInDiagonalPattern {
     //https://www.geeksforgeeks.org/problems/print-matrix-in-diagonal-pattern/1
+    /*
+    MARK FOR REVISION
+     */
     public static void main(String[] args) {
 //        Scanner sc = new Scanner(System.in);
 //        int n = sc.nextInt();
