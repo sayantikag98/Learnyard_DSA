@@ -71,7 +71,7 @@ class ArrayList{
         return this.capacity;
     }
 
-    void addInternal(int val, int idx){
+    private void addInternal(int val, int idx){
         if(idx > this.size || idx < 0){
             System.out.println("Index is out of bound. No addition possible");
             return;
