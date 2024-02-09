@@ -3,13 +3,13 @@ package L17_ArrayList.Class;
 public class MyArrayList {
     public static void main(String[] args) {
         ArrayList al = new ArrayList(5);
-        System.out.println(al.getSize());
-        System.out.println(al.getCapacity());
+        System.out.println(al.size());
+        System.out.println(al.capacity());
         al.print();
         for(int i = 0; i<=10; i++){
-            al.add(i, i-2);
-            System.out.println(al.getSize());
-            System.out.println(al.getCapacity());
+            al.add(i-2, i);
+            System.out.println(al.size());
+            System.out.println(al.capacity());
             al.print();
         }
         System.out.println(al.getFirst());
@@ -24,20 +24,22 @@ public class MyArrayList {
         al.print();
 
         ArrayList al1 = new ArrayList();
-        System.out.println(al1.getSize());
-        System.out.println(al1.getCapacity());
+        System.out.println(al1.size());
+        System.out.println(al1.capacity());
         al1.print();
 
         ArrayList al2 = new ArrayList(new int[]{1,2,3,4,5});
-        System.out.println(al2.getSize());
-        System.out.println(al2.getCapacity());
+        System.out.println(al2.size());
+        System.out.println(al2.capacity());
         al2.print();
-        al2.add(10,3);
+        al2.add(3, 10);
         al2.addFirst(100);
         al2.addLast(1000);
         al2.print();
         System.out.println(al2.remove(2));
         al2.print();
+
+
     }
 }
 
@@ -63,15 +65,15 @@ class ArrayList{
        this.arr = arr;
     }
 
-    int getSize(){
+    int size(){
         return this.size;
     }
 
-    int getCapacity(){
+    int capacity(){
         return this.capacity;
     }
 
-    private void addInternal(int val, int idx){
+    private void addInternal(int idx, int val){
         if(idx > this.size || idx < 0){
             System.out.println("Index is out of bound. No addition possible");
             return;
@@ -102,7 +104,7 @@ class ArrayList{
        this.addInternal(val, this.size);
     }
 
-    void add(int val, int index){
+    void add(int index, int val){
         this.addInternal(val, index);
     }
 
@@ -151,11 +153,77 @@ class ArrayList{
         return remove(this.size-1);
     }
 
-    void print(){
-        System.out.print("[ ");
+    void clear(){
+//        this.arr = new int[this.capacity];
+        this.size = 0;
+    }
+
+    boolean contains(int val){
+        for(int ele: this.arr){
+            if(val == ele) return true;
+        }
+        return false;
+    }
+
+    int indexOf(int val){
         for(int i = 0; i<this.size; i++){
+            if(this.arr[i] == val) return i;
+        }
+        return -1;
+    }
+
+    int lastIndexOf(int val){
+        for(int i = this.size-1; i>=0; i--){
+            if(this.arr[i] == val) return i;
+        }
+        return -1;
+    }
+
+    boolean isEmpty(){
+        return this.size == 0;
+    }
+
+    void set(int index, int val){
+        if(index<0 || index>=this.size){
+            System.out.println("Index is out of bound. No access possible");
+            return;
+        }
+        this.arr[index] = val;
+    }
+
+    int[] toArray(){
+        return this.arr;
+    }
+
+    void trimToSize(){
+        this.capacity = this.size;
+    }
+
+    void subList(int fromIndex, int toIndex){
+        //fromIndex included and toIndex excluded
+        if(fromIndex<0 || fromIndex >= this.size || toIndex<0 || toIndex > this.size || fromIndex>toIndex)
+        {
+            System.out.println("Index out of bound. No sublist possible");
+            return;
+        }
+        this.printInternal(fromIndex, toIndex);
+    }
+
+    void printInternal(int fromIndex, int toIndex){
+        System.out.print("[ ");
+        for(int i = fromIndex; i<toIndex; i++){
             System.out.print(this.arr[i]+" ");
         }
         System.out.println("]");
     }
+
+    void print(){
+        this.printInternal(0, this.size);
+    }
+
+    void print(int fromIndex, int toIndex){
+        this.printInternal(fromIndex, toIndex);
+    }
+
+
 }

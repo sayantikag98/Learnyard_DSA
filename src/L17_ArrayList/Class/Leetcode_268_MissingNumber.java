@@ -5,10 +5,43 @@ public class Leetcode_268_MissingNumber {
     //https://leetcode.com/problems/missing-number/
     public static void main(String[] args) {
         int[] nums = {9,6,4,2,3,5,7,0,1};
+        System.out.println(missingNumberUsingXOR(nums));
+        System.out.println(missingNumberUsingSum(nums));
         System.out.println(missingNumberUsingArray(nums));
         System.out.println(missingNumberUsingNestedLoop(nums));
         System.out.println(missingNumberUsingSorting(nums));
         System.out.println(missingNumberWithoutExtraSpace(nums));
+    }
+
+    private static int missingNumberUsingXOR(int[] nums){
+        /*
+        Properties:
+        A^0 = A
+        A^A = 0
+        A^A^B^B^C^D^D = 0^0^C^0 = C
+
+        Approach: Take xor of all elements in the given array and xor it with the xor of all indices from 0 to length of array.
+                  This would be the missing element.
+
+         */
+        int ans = nums.length;
+        for(int i = 0; i<nums.length; i++){
+            ans^=nums[i]^i;
+        }
+        return ans;
+    }
+
+    private static int missingNumberUsingSum(int[] nums){
+        /*
+        1. Take the sum of all elements of the array (s1)
+        2. Take the sum of first n natural numbers where n is the length of the array (s2)
+        3. Missing element = s2-s1
+         */
+        int sum = 0, n = nums.length;
+        for(int val: nums){
+            sum+=val;
+        }
+        return (n*(n+1))/2 - sum;
     }
 
     private static int missingNumberWithoutExtraSpace(int[] nums){
