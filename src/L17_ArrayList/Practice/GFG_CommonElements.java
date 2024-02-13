@@ -1,4 +1,4 @@
-package L17_ArrayList.Homework;
+package L17_ArrayList.Practice;
 
 import java.util.*;
 
