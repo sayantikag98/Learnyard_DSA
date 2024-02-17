@@ -1,0 +1,3 @@
+1. In case of division, do check for whether it is getting divided by zero or not
+2. In case of adding lots of large number (10^5 getting added 10^4 times), the result overflows for int, so take long
+3. Do check for edge cases
